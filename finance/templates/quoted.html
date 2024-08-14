@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote Results
+{% endblock %}
+
+{% block main %}
+
+    <h1>({{ stock.symbol }})</h1>
+    <p>Current Price: {{ stock.price | usd }}</p>
+    <a href="/quote">Do another Quote Search</a>
+
+{% endblock %}

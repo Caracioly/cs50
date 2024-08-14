@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>autocomplete</title>
+</head>
+<body>
+
+    <input
+    type="text"
+    autocomplete="off"
+    autofocus
+    placeholder="Query">
+    <ul></ul>
+
+</body>
+<script>
+    const WORDS = [
+        "abacaxi",
+        "melancia",
+        "maca",
+        "banana",
+        "laranja",
+        "manga",
+        "uva",
+        "morango",
+        "pessego",
+        "pera",
+        "cereja",
+        "limao",
+        "kiwi",
+        "mamao",
+        "ameixa",
+        "amora",
+        "framboesa",
+        "coco",
+        "abacate",
+        "maracuja",
+    ];
+
+    let input = document.querySelector('input');
+    let ul = document.querySelector('ul');
+
+    input.addEventListener('keyup', (e) => {
+        let html = '';
+        if (input.value) {
+            for (word of WORDS) {
+                if(word.startsWith(input.value)) {
+                    html += `<li>${word}</li>`;
+                }
+            }
+        }
+        ul.innerHTML = html;
+    });
+
+</script>
+</html>

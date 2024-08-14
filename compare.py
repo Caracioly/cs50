@@ -1,0 +1,12 @@
+def get_int(txt):
+    return int(input(txt))
+
+x = get_int("What's x? ")
+y = get_int("What's y? ")
+
+if x < y:
+    print("x is less than y")
+elif x > y:
+    print("x is greater than y")
+else:
+    print("x is equal to y")

@@ -1,0 +1,15 @@
+sort1 uses: Bubble Sort
+
+How do you know?: When the list was reversed it takes significant time
+and when was sorted it takes even less time to finish fiting the best case
+cenario of Ω(n).
+
+sort2 uses: Merge Sort
+
+How do you know?: The quickest of those sorts methods, remained constant
+and fast trought all tests.
+
+sort3 uses: Selection Sort
+
+How do you know?: Time stay constant trought all tests validating the best
+case cenario of O(n²).

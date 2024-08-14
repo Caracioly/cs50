@@ -1,0 +1,7 @@
+We can calculate the aura by looking at the average of all songs:
+"SELECT AVG(energy), AVG(valence), AVG(danceability) FROM songs;"
+
+Since there are already 100 songs there's no need to LIMIT them;
+
+Based on the results, I can tell that the person enjoys dancing,
+has a preference for energetic songs, and about half the time listens to positives music.

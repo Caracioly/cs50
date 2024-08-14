@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+
+                const firstOption = document.getElementById('first');
+                const secondOption = document.getElementById('second');
+                const thirdption = document.getElementById('third');
+
+                const firstAnswer = document.getElementById('first-answer');
+
+
+                firstOption.addEventListener('click', () => {
+                    firstAnswer.innerText = "Incorrect";
+                    firstOption.style.color = "white";
+                    firstOption.style.backgroundColor = "red";
+                })
+
+                secondOption.addEventListener('click', () => {
+                    firstAnswer.innerText = "Correct";
+                    secondOption.style.color = "white";
+                    secondOption.style.backgroundColor = "green";
+                })
+
+                thirdption.addEventListener('click', () => {
+                    firstAnswer.innerText = "Incorrect";
+                    thirdption.style.color = "white";
+                    thirdption.style.backgroundColor = "red";
+                })
+
+
+                const secondQuestion = document.getElementById("second-question");
+                const submitBtn = document.getElementById('submit')
+                const secondAnswer = document.getElementById('second-answer');
+
+                submitBtn.addEventListener('click', () => {
+                    event.preventDefault();
+                    if (secondQuestion.value == "getElementById") {
+                        secondQuestion.style.color = "green"
+                        secondQuestion.style.border = "2px solid green";
+                        secondAnswer.innerText = "Correct!";
+                    } else {
+                        secondQuestion.style.color = "red"
+                        secondQuestion.style.border = "2px solid red";
+                        secondAnswer.innerText = "Incorrect";
+                    }
+                })
+
+            })
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Witch one of this options below is an actual programming language?</h3>
+                <p id="first-answer"></p>
+                <button id="first">HTML</button>
+                <button id="second">JavaScript</button>
+                <button id="third">CSS</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Insert the method to get a document element by id in JavaScript.</h3>
+                <p id="second-answer"></p>
+                <form action="">
+                    <input id="second-question" placeholder="your answer" autocomplete="off" type="text">
+                    <button id="submit">Check Answer</button>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>

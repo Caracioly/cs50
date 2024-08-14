@@ -1,0 +1,11 @@
+{
+    "gitdoc.enabled": true,
+    "files.associations": {
+        "cs50.h": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "cmath": "c",
+        "cstdlib": "c"
+    }
+}

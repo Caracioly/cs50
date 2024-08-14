@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greet</title>
+</head>
+<body>
+    <form onsubmit="greet(); return false;">
+        <input
+        type="text"
+        autocomplete="off"
+        autofocus
+        id="name"
+        placeholder="Name">
+        <input type="submit">
+    </form>
+</body>
+<script>
+
+    function greet(){
+        alert(`Hello, ${document.getElementById("name").value}.`);
+        //document.querySelector("#name").value;
+    }
+
+</script>
+</html>
