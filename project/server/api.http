@@ -1,0 +1,11 @@
+GET http://localhost:3333/ping
+
+### Create user
+POST http://localhost:3333/users
+Content-Type: application/json
+
+{
+  "name": "andre2",
+  "age": 20,
+  "password": "andre1"
+}
