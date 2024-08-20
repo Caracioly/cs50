@@ -8,11 +8,12 @@ datasource db {
 }
 
 model Users {
-  id       String   @id @default(uuid())
-  name     String   @unique
-  age      Int
-  password String
-  scores   Scores[]
+  id        String      @id @default(uuid())
+  name      String      @unique
+  age       Int
+  password  String
+  scores    Scores[]
+  exercises Exercises[]
 
   @@map("users")
 }
@@ -24,4 +25,14 @@ model Scores {
   userId String @map("user_id")
 
   @@map("scores")
+}
+
+model Exercises {
+  id      String @id @default(uuid())
+  name    String
+  chances Int
+  user    Users  @relation(fields: [userId], references: [id])
+  userId  String @map("user_id")
+
+  @@map("exercises")
 }

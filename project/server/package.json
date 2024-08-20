@@ -19,6 +19,7 @@
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
     "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^22.3.0",
     "prisma": "^5.18.0",
     "tsup": "^8.2.4",
@@ -33,6 +34,7 @@
     "bcrypt": "^5.1.1",
     "fastify": "^4.28.1",
     "fastify-type-provider-zod": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
     "zod": "^3.23.8",
     "zod-prisma-types": "^3.1.8"
   }

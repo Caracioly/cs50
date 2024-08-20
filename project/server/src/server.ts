@@ -17,7 +17,7 @@ init()
         console.error("Error starting server:", err);
         process.exit(1);
       }
-      console.log(`Server running aaa on port ${address}`);
+      console.log(`Server running on port ${address}`);
     });
   })
   .catch((err) => {

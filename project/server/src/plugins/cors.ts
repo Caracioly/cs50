@@ -3,6 +3,6 @@ import fastifyCors from "@fastify/cors";
 
 export async function registerCors(app: FastifyInstance) {
   app.register(fastifyCors, {
-    origin: "*", // permite todas as origens
+    origin: "*", // allow all origins
   });
 }

@@ -1,45 +1,62 @@
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { RiUser3Fill } from "react-icons/ri";
 import { MdKey } from "react-icons/md";
+import { TiCalendar } from "react-icons/ti";
 
 import { toast } from "sonner";
 
 import { SubmitButton } from "@/components/submit-button";
 import { TextInput } from "@/components/text-input";
-import { useAuth } from "@/context/AuthProvider/useAuth";
 
 import rubberduck from "@/assets/rubberduck.png";
+import { Api } from "@/services/api";
 
+// #F0C52A #FFFFFF #0B132B #1c2541 #3a506b
 
-export function Login() {
+export function Register() {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirm, setConfirm] = useState<string>("");
   const [pending, setPending] = useState<boolean>(false);
+  const [age, setAge] = useState<number>(0);
 
-  const auth = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    setPending(true);
-
-    if (password.length <= 4 || name.length <= 3) {
-      toast.error("Invalid name or password");
+    if (password.length <= 4) {
+      toast.info("Password must be at least 4 characters long");
+      return;
+    } else if (name.length <= 3) {
+      toast.info("Name must be at least 3 characters long");
+      return;
+    } else if (password !== confirm) {
+      toast.info("Passwords do not match");
+      return;
+    } else if (age >= 150) {
+      toast.info("I don't know how you are that old");
+      return;
+    } else if (age <= 5) {
+      toast.info("I think you are too young");
       return;
     }
 
     try {
-      await auth.authenticate(name, password);
+      setPending(true);
+      await Api.post("users", {
+        name,
+        age,
+        password,
+      });
 
-      toast.success("Logged in");
+      toast.success("Registered successfully");
       navigate("/");
-    } catch (error) {
-      toast.error("Invalid name or password");
+    } catch (error: any) {
+      toast.error(error.response.data.meessage || "Something went wrong");
       return;
     } finally {
       setPending(false);
@@ -56,6 +73,7 @@ export function Login() {
           onSubmit={handleSubmit}
         >
           <h1 className="text-4xl font-extralight mb-4">Welcome</h1>
+
           <div className="flex items-center bg-[#0B132B] rounded-lg">
             <RiUser3Fill className="ml-3" size={24} color="#F0C52A" />
             <TextInput
@@ -68,6 +86,19 @@ export function Login() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
+
+          <div className="flex items-center bg-[#0B132B] rounded-lg">
+            <TiCalendar className="ml-3" size={24} color="#F0C52A" />
+            <TextInput
+              type="number"
+              name="age"
+              placeholder="Age"
+              autoComplete="off"
+              required
+              onChange={(e) => setAge(Number(e.target.value))}
+            />
+          </div>
+
           <div className="flex items-center bg-[#0B132B] rounded-lg">
             <MdKey className="ml-3" size={24} color="#F0C52A" />
             <TextInput
@@ -80,18 +111,27 @@ export function Login() {
             />
           </div>
 
+          <div className="flex items-center bg-[#0B132B] rounded-lg">
+            <MdKey className="ml-3" size={24} color="#F0C52A" />
+            <TextInput
+              type="password"
+              name="confirm"
+              placeholder="Confirm password"
+              autoComplete="off"
+              required
+              onChange={(e) => setConfirm(e.target.value)}
+            />
+          </div>
+
           <p>
-            Doesn't have an account?{" "}
-            <Link
-              className="text-[#F0C52A] hover:text-[#ece3bf]"
-              to="/register"
-            >
-              Sign up
+            Already have an account?{" "}
+            <Link className="text-[#F0C52A] hover:text-[#ece3bf]" to="/">
+              Log In
             </Link>
           </p>
 
           <SubmitButton type="submit" disabled={pending}>
-            {pending ? "Logging in..." : "Login"}
+            {pending ? "Registering..." : "Register"}
           </SubmitButton>
         </form>
         <div className="w-full text-white bg-[#1c2541] text-center p-4">
