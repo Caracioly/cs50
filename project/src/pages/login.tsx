@@ -14,7 +14,6 @@ import { useAuth } from "@/context/AuthProvider/useAuth";
 
 import rubberduck from "@/assets/rubberduck.png";
 
-
 export function Login() {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -26,18 +25,17 @@ export function Login() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    setPending(true);
-
     if (password.length <= 4 || name.length <= 3) {
       toast.error("Invalid name or password");
       return;
     }
 
     try {
+      setPending(true);
       await auth.authenticate(name, password);
 
       toast.success("Logged in");
-      navigate("/");
+      navigate("/greet");
     } catch (error) {
       toast.error("Invalid name or password");
       return;

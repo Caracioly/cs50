@@ -28,20 +28,23 @@ export function Register() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (password.length <= 4) {
-      toast.info("Password must be at least 4 characters long");
+    if (password.length < 4) {
+      toast.error("Password must be at least 4 characters long");
       return;
-    } else if (name.length <= 3) {
-      toast.info("Name must be at least 3 characters long");
+    } else if (name.length < 3) {
+      toast.error("Name must be at least 3 characters long");
       return;
     } else if (password !== confirm) {
-      toast.info("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
-    } else if (age >= 150) {
-      toast.info("I don't know how you are that old");
+    } else if (age > 120) {
+      toast.error("Please enter a realistic age");
       return;
-    } else if (age <= 5) {
-      toast.info("I think you are too young");
+    } else if (age < 6) {
+      toast.error("You must be at least 6 years old");
+      return;
+    } else if (password !== confirm) {
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -56,7 +59,7 @@ export function Register() {
       toast.success("Registered successfully");
       navigate("/");
     } catch (error: any) {
-      toast.error(error.response.data.meessage || "Something went wrong");
+      toast.error(error.response?.data?.error || "Something went wrong");
       return;
     } finally {
       setPending(false);

@@ -6,17 +6,17 @@ import { spawn } from "child_process";
 import { prisma } from "../plugins/prisma";
 import { decodeToken } from "../plugins/jwt";
 
-export async function greet(app: FastifyInstance) {
-  app.post("/greet", async (request, reply) => {
+export async function sum(app: FastifyInstance) {
+  app.post("/sum", async (request, reply) => {
     const codeSchema = z.object({
       code: z.string(),
       token: z.string(),
     });
 
     const testCases = [
-      { in: "Andre", out: "hello, Andre" },
-      { in: "David", out: "hello, David" },
-      { in: "Brian", out: "hello, Brian" },
+      { in: [2, 2], out: "4" },
+      { in: [0, 0], out: "0" },
+      { in: [-8, 4], out: "-4" },
     ];
 
     const { code, token } = codeSchema.parse(request.body);
@@ -30,7 +30,7 @@ export async function greet(app: FastifyInstance) {
     const exercise = await prisma.exercises.findFirst({
       where: {
         userId: user.id,
-        name: "greet",
+        name: "sum",
       },
     });
 
@@ -57,14 +57,16 @@ export async function greet(app: FastifyInstance) {
       },
     });
 
-    function runPythonScript(code: string, input: string): Promise<string> {
+    function runPythonScript(code: string, inputs: number[]): Promise<string> {
       return new Promise((resolve, reject) => {
+        const [a, b] = inputs;
+
         const pythonProcess = spawn("python", [
           "-c",
           `
 ${code}
 
-result = greet("${input}")
+result = sum(${a}, ${b})
 print(result)
 `,
         ]);

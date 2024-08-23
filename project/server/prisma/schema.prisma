@@ -28,11 +28,12 @@ model Scores {
 }
 
 model Exercises {
-  id      String @id @default(uuid())
-  name    String
-  chances Int
-  user    Users  @relation(fields: [userId], references: [id])
-  userId  String @map("user_id")
+  id             String  @id @default(uuid())
+  name           String
+  chances        Int     @default(3)
+  allTestsPassed Boolean @default(false) @map("all_tests_passed")
+  user           Users   @relation(fields: [userId], references: [id])
+  userId         String  @map("user_id")
 
   @@map("exercises")
 }

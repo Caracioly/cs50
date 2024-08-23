@@ -27,7 +27,7 @@ interface TestCase {
   passed?: boolean;
 }
 
-export function Greet() {
+export function Sum() {
   const { handleLogout } = useAuthValidation();
   const navigate = useNavigate();
 
@@ -41,9 +41,9 @@ export function Greet() {
   const [chances, setChances] = useState(0);
   const [score, setScore] = useState(0);
   const [testCases, setTestCases] = useState<TestCase[]>([
-    { test: 1, Input: "Andre", Expect: "hello, Andre", Output: "" },
-    { test: 2, Input: "David", Expect: "hello, David", Output: "" },
-    { test: 3, Input: "Brian", Expect: "hello, Brian", Output: "" },
+    { test: 1, Input: "a = 2, b = 2", Expect: "4", Output: "" },
+    { test: 2, Input: "a = 0, b = 0", Expect: "0", Output: "" },
+    { test: 3, Input: "a = -8, b = 4", Expect: "-4", Output: "" },
   ]);
 
   const fetchData = async () => {
@@ -53,7 +53,7 @@ export function Greet() {
           Authorization: `Bearer ${user.token}`,
         },
       });
-      setChances(response.data.chances[0]);
+      setChances(response.data.chances[1]);
       setScore(response.data.score);
     } catch (error: any) {
       toast.error(error.response?.data?.error || "Something went wrong");
@@ -62,7 +62,7 @@ export function Greet() {
 
   useEffect(() => {
     fetchData();
-  }, [Greet]);
+  }, [Sum]);
 
   const editorRef = useRef<CodeEditorRef>(null);
 
@@ -70,7 +70,7 @@ export function Greet() {
     const editorValue = editorRef.current?.getEditorValue();
 
     try {
-      await Api.post("greet", {
+      await Api.post("sum", {
         code: editorValue,
         token: user.token,
       })
@@ -102,33 +102,34 @@ export function Greet() {
     <div className="flex flex-col min-h-screen h-full bg-[#0B132B] p-4 items-center justify-center">
       <div className="flex min-h-[90vh] h-full w-2/3">
         <div className="w-1/3 p-4 text-white bg-[#1C2541] rounded-lg border-2 border-[#F0C52A] flex flex-col justify-between gap-y-3">
-          <h1 className="text-center text-xl font-bold mb-4">01 - Greeting</h1>
+          <h1 className="text-center text-xl font-bold mb-4">02 - Sum</h1>
 
           <p>
-            Your task is to write a function that accepts a <Code>string</Code>
-            parameter, representing a person's name, and returns a personalized
-            greeting for that name.
+            Your task is to write a function that accepts two{" "}
+            <Code>integer</Code> parameters, representing the values{" "}
+            <Code>a</Code> and <Code>b</Code>, and returns the sum of these two
+            numbers.
           </p>
 
           <p className="mt-2">
-            For instance, given a <Code>string</Code> named <Code>"andre"</Code>
-            , your function should output:
+            For instance, given two integers <Code>a = 3</Code> and{" "}
+            <Code>b = 5</Code>, your function should output:
           </p>
 
-          <p className="mt-1 font-bold">"hello, andre"</p>
+          <p className="mt-1 font-bold">8</p>
 
           <h2 className="mt-4 text-lg font-bold">Example:</h2>
 
           <p>
-            <b>Input:</b> <Code>David</Code>
+            <b>Input:</b> <Code>a = 7</Code>, <Code>b = 10</Code>
           </p>
           <p>
-            <b>Output:</b> <Code>"hello, David"</Code>
+            <b>Output:</b> <Code>17</Code>
           </p>
           <p className="mt-2">
-            <b>Explanation:</b> Since the input is David, your function should
-            return <br /> <Code>"hello, David"</Code> to greet the name
-            provided.
+            <b>Explanation:</b> Since the input values are 7 and 10, your
+            function should return <br /> <Code>17</Code> as the sum of the two
+            numbers.
           </p>
 
           <div className="border-t border-gray-500">
@@ -159,7 +160,7 @@ export function Greet() {
 
         <div className="w-2/3 flex flex-col justify-between px-4 rounded-lg">
           <div className="h-2/3 mb-5 border-2 border-[#665412]">
-            <CodeEditor ref={editorRef} defaultValue="# def greet()" />
+            <CodeEditor ref={editorRef} defaultValue="# def sum()" />
           </div>
 
           <div className="bg-[#1C2541] p-4 rounded-lg border-2 border-[#f3d97d]">
@@ -169,7 +170,9 @@ export function Greet() {
                 <span className="text-white font-bold mr-6">
                   Chances: {chances}/3
                 </span>
-                <SubmitButton disabled={chances === 0} onClick={submitTest}>Submit Test</SubmitButton>
+                <SubmitButton disabled={chances === 0} onClick={submitTest}>
+                  Submit Test
+                </SubmitButton>
               </div>
             </div>
             <div className="flex flex-row flex-wrap p-4 rounded-lg text-white justify-center">

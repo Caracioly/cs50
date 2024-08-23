@@ -18,3 +18,7 @@ export function isValidToken(authHeader: string) {
   }
   return true;
 }
+
+export function decodeToken(token: string) {
+  return jwt.decode(token);
+}

@@ -22,7 +22,8 @@ export async function register(app: FastifyInstance) {
 
     if (userExists) {
       return reply.status(400).send({
-        message: "Name already taken",
+        success: false,
+        error: "Name already taken",
       });
     }
 
@@ -33,6 +34,21 @@ export async function register(app: FastifyInstance) {
         name,
         password: hashedPassword,
         age,
+        exercises: {
+          create: [
+            {
+              name: "greet",
+            },
+            {
+              name: "sum",
+            }
+          ],
+        },
+        scores: {
+          create: {
+            score: 0,
+          },
+        },
       },
     });
 

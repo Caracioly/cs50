@@ -9,10 +9,13 @@ import { AuthLayout } from "./context/AuthProvider/authLayout";
 
 import { Toaster } from "sonner";
 
-import { Login } from "@/pages/login";
+import { Exercises } from "./pages/exercices";
 import { Register } from "@/pages/register";
-import { Greet } from "./pages/greet";
 import { NotFound } from "./pages/not-found";
+import { Login } from "@/pages/login";
+import { Greet } from "./pages/greet";
+import { Sum } from "./pages/sum";
+import { Ranking } from "./pages/ranking";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +28,32 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
+    path: "/ranking",
+    element: (
+      <AuthLayout>
+        <Ranking />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "exercises",
+    element: (
+      <AuthLayout>
+        <Exercises />
+      </AuthLayout>
+    ),
+  },
+  {
     path: "/greet",
     element: (
       <AuthLayout>
         <Greet />
       </AuthLayout>
     ),
+  },
+  {
+    path: "/sum",
+    element: <Sum />,
   },
 ]);
 
