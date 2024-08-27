@@ -50,10 +50,11 @@ export function Register() {
 
     try {
       setPending(true);
-      await Api.post("users", {
+      await Api.post("register", {
         name,
         age,
         password,
+        confirm
       });
 
       toast.success("Registered successfully");

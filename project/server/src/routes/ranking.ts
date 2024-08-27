@@ -20,6 +20,7 @@ export async function ranking(app: FastifyInstance) {
       const usersRanking = await prisma.users.findMany({
         select: {
           name: true,
+          age:true,
           scores: {
             select: {
               score: true,

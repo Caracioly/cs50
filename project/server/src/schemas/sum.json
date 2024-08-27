@@ -1,0 +1,165 @@
+{
+  "post": {
+    "summary": "Execute sum script",
+    "description": "Executes a Python script with provided code and test cases to validate the sum function output.",
+    "tags": ["exercise"],
+    "parameters": [
+      {
+        "in": "body",
+        "name": "body",
+        "description": "Request body for executing the sum script",
+        "type": "object",
+        "schema": {
+          "required": ["code", "token"],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "The Python code to be executed",
+              "example": "def sum(a, b):"
+            },
+            "token": {
+              "type": "string",
+              "description": "JWT token for authentication",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Script executed successfully with results",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "input": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        },
+                        "example": [2, 2]
+                      },
+                      "expected": {
+                        "type": "string",
+                        "example": "4"
+                      },
+                      "result": {
+                        "type": "string",
+                        "example": "4"
+                      },
+                      "passed": {
+                        "type": "boolean",
+                        "example": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "No chances remaining",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "error": {
+                  "type": "string",
+                  "example": "No chances remaining"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized - Missing or invalid token",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Exercise not found for this user",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Exercise not found for this user"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Something went wrong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

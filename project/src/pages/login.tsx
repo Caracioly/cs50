@@ -25,7 +25,7 @@ export function Login() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (password.length <= 4 || name.length <= 3) {
+    if (password.length <= 3 || name.length <= 3) {
       toast.error("Invalid name or password");
       return;
     }
@@ -35,7 +35,7 @@ export function Login() {
       await auth.authenticate(name, password);
 
       toast.success("Logged in");
-      navigate("/greet");
+      navigate("/exercises");
     } catch (error) {
       toast.error("Invalid name or password");
       return;

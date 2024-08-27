@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 
+import { swagger } from "./plugins/swagger";
 import { registerCors } from "./plugins/cors";
-import { registerSwagger } from "./plugins/swagger";
 
 import { userStats } from "./routes/user-stats";
 import { register } from "./routes/register";
@@ -9,20 +9,24 @@ import { logout } from "./routes/logout";
 import { login } from "./routes/login";
 import { auth } from "./routes/auth";
 
-import { greet } from "./routes/greet";
-import { sum } from "./routes/sum";
+import { average } from "./routes/average";
 import { ranking } from "./routes/ranking";
+import { greet } from "./routes/greet";
+import { vowel } from "./routes/vowel";
+import { sum } from "./routes/sum";
 
 export async function buildApp(app: FastifyInstance) {
-  await registerCors(app);
-  await registerSwagger(app);
+  registerCors(app);
 
-  await register(app);
-  await login(app);
-  await logout(app);
-  await auth(app);
-  await greet(app);
+  await swagger(app);
   await userStats(app);
-  await sum(app);
+  await register(app);
+  await average(app);
   await ranking(app);
+  await logout(app);
+  await login(app);
+  await vowel(app);
+  await greet(app);
+  await auth(app);
+  await sum(app);
 }

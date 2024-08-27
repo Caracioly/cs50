@@ -16,6 +16,8 @@ import { Login } from "@/pages/login";
 import { Greet } from "./pages/greet";
 import { Sum } from "./pages/sum";
 import { Ranking } from "./pages/ranking";
+import { Average } from "./pages/average";
+import { Vowel } from "./pages/vowel";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +55,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/sum",
-    element: <Sum />,
+    element: (
+      <AuthLayout>
+        <Sum />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/average",
+    element: (
+      <AuthLayout>
+        <Average />
+      </AuthLayout>
+    ),
+  },
+  {
+    path: "/vowel",
+    element: (
+      <AuthLayout>
+        <Vowel />
+      </AuthLayout>
+    ),
   },
 ]);
 

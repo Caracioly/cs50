@@ -1,0 +1,113 @@
+{
+  "get": {
+    "summary": "Get user stats",
+    "description": "Returns statistics for a specific user, including exercise chances and scores.",
+    "tags": ["user"],
+    "parameters": [
+      {
+        "in": "header",
+        "name": "Authorization",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Bearer token for authentication",
+        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "chances": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "example": 3
+                  }
+                },
+                "score": {
+                  "type": "integer",
+                  "example": 100
+                },
+                "allTestspassed": {
+                  "type": "array",
+                  "items": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized - Missing or invalid token",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Missing or invalid token"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found - User stats not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User stats not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Something went wrong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ]
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

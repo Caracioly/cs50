@@ -1,0 +1,57 @@
+{
+  "post": {
+    "description": "Logout",
+    "tags": ["auth"],
+    "summary": "Logout the user token",
+    "parameters": [
+      {
+        "in": "header",
+        "name": "Authorization",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZmNGNhODQwLWQwMDktNDkyYi04NWZkLWU1NDk0ODhjOWJlNSIsImlhdCI6MTcyNDc2MzkzNywiZXhwIjoxNzI0NzY3NTM3fQ.znWzZ7BxUmHzOfImh8e31GDqthOUpNclg0dFqmmmbBQs"
+      }
+    ],
+
+    "responses": {
+      "200": {
+        "description": "Logout sucessful",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "messsage": {
+                    "type": "string",
+                    "example": "Logged out"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "valid": {
+                    "type": "string",
+                    "example": "No token provided or Invalid token"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

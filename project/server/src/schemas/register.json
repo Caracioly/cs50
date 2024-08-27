@@ -1,0 +1,75 @@
+{
+  "post": {
+    "description": "Register with name and password and age",
+    "tags": ["user"],
+    "summary": "Register",
+    "parameters": [
+      {
+        "in": "body",
+        "name": "body",
+        "description": "Insert a username and password and age to create an account",
+        "type": "object",
+        "schema": {
+          "required": ["name", "password", "age"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "user name"
+            },
+            "age": {
+              "type": "number",
+              "example": 18
+            },
+            "password": {
+              "type": "string",
+              "format": "password",
+              "example": "user password"
+            },
+            "confirm": {
+              "type": "string",
+              "format": "password",
+              "example": "user password confirmation"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Account created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "enum": ["Account created"]
+                },
+                "user_id": {
+                  "type": "string",
+                  "enum": ["User ID"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Account creation failed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

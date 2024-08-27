@@ -5,8 +5,6 @@ export async function logout(app: FastifyInstance) {
   app.post("/logout", async (request, reply) => {
     const authHeader = request.headers.authorization;
 
-    console.log(authHeader);
-
     if (!authHeader) {
       return reply.status(401).send({
         message: "No token provided",

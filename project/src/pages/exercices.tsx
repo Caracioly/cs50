@@ -60,14 +60,14 @@ export function Exercises() {
     },
     {
       id: 3,
-      url: "sum",
-      name: "Sum",
+      url: "average",
+      name: "Average",
       completion: allTestspassed?.[2] || false,
     },
     {
       id: 4,
-      url: "sum",
-      name: "Sum",
+      url: "vowel",
+      name: "Vowel",
       completion: allTestspassed?.[3] || false,
     },
   ];
@@ -81,6 +81,7 @@ export function Exercises() {
       <div className="flex flex-col h-full items-center justify-between">
         <img className="size-48" src={rubberduck} alt="rubberduck" />
         <div className="text-white mt-4 flex items-center justify-center flex-col bg-[#1c2541] p-6 rounded-2xl gap-y-6 ring-[#F0C52A] ring-offset-2 ring-offset-zinc-950 focus-within:ring-1">
+          <h1 className="text-4xl font-extralight">Exercices</h1>
           <ul className="space-y-4 p-4 rounded-lg w-full">
             {exercises.map((exercise) => (
               <li
@@ -103,24 +104,24 @@ export function Exercises() {
               </li>
             ))}
           </ul>
-          <p className="font-bold">Score: {score} </p>
+          <p className="font-bold text-2xl">Score: {score} </p>
         </div>
-       <div className="flex flex-row gap-x-2">
-       <SubmitButton
-          onClick={navigateToRanking}
-          className="items-center flex gap-x-2 font-bold px-3 bg-[#F0C52A] rounded-lg hover:bg-[#ece3bf] text-[#0B132B] py-2"
-        >
-          <FaRankingStar className="" size={20} />
-          Ranking
-        </SubmitButton>
-        <SubmitButton
-          onClick={handleLogout}
-          className="items-center flex gap-x-2 font-bold px-3 bg-[#F0C52A] rounded-lg hover:bg-[#ece3bf] text-[#0B132B] py-2"
-        >
-          <IoLogOut className="" size={20} />
-          Logout
-        </SubmitButton>
-       </div>
+        <div className="flex flex-row gap-x-2">
+          <SubmitButton
+            onClick={navigateToRanking}
+            className="items-center flex gap-x-2 font-bold px-3 bg-[#F0C52A] rounded-lg hover:bg-[#ece3bf] text-[#0B132B] py-2"
+          >
+            <FaRankingStar size={20} />
+            Ranking
+          </SubmitButton>
+          <SubmitButton
+            onClick={handleLogout}
+            className="items-center flex gap-x-2 font-bold px-3 bg-[#F0C52A] rounded-lg hover:bg-[#ece3bf] text-[#0B132B] py-2"
+          >
+            <IoLogOut size={20} />
+            Logout
+          </SubmitButton>
+        </div>
         <div className="w-full text-white bg-[#1c2541] text-center p-4">
           <h1>CS50 Final-Project</h1>
           <h1>Made by @andrecaracioly</h1>

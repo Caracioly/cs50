@@ -1,0 +1,65 @@
+{
+  "post": {
+    "description": "Login with name and password",
+    "tags": ["auth"],
+    "summary": "Login auth",
+    "parameters": [
+      {
+        "in": "body",
+        "name": "body",
+        "description": "Insert a username and password to try it out",
+        "type": "object",
+        "schema": {
+          "required": ["name", "password"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "user name"
+            },
+            "password": {
+              "type": "string",
+              "format": "password",
+              "example": "user password"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Successful login",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "enum": ["Logged in"]
+                },
+                "token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

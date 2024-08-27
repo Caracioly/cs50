@@ -16,6 +16,7 @@ interface Score {
 
 interface ScoreRankingType {
   name: string;
+  age: number;
   scores: Score[];
 }
 
@@ -67,6 +68,7 @@ export function Ranking() {
                 <th className="py-2 px-4 border-b-2 border-[#F0C52A] rounded-l-lg">
                   Name
                 </th>
+                <th className="py-2 px-4 border-b-2 border-[#F0C52A]">Age</th>
                 <th className="py-2 px-4 border-b-2 border-[#F0C52A] rounded-r-lg">
                   Score
                 </th>
@@ -83,6 +85,7 @@ export function Ranking() {
                 .map((item, index) => (
                   <tr key={index} className="bg-[#1C2541]">
                     <td className="py-2 px-4 border-b">{item.name}</td>
+                    <td className="py-2 px-4 border-b">{item.age}</td>
                     <td className="py-2 px-4 border-b">
                       {item.scores[0]?.score || 0}
                     </td>
