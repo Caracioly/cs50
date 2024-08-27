@@ -127,15 +127,21 @@ CREATE TABLE "exercises" (
 
 1. **Register as a new user:**
    - If you don't have an account, access `/register` to create an account.
-     ![register](https://i.imgur.com/Tcc7S9K.png)
+   
+   ![register](https://i.imgur.com/Tcc7S9K.png)
+
 2. **Login:**
    - Use `/login` to authenticate and retrieve your JWT token.
-     ![login](https://i.imgur.com/g9PgPtp.png)
+   
+   ![login](https://i.imgur.com/g9PgPtp.png)
+
 3. **Test your Python skills:**
    - Submit code for each exercise endpoint (e.g., `/average`, `/sum`, etc.).
-     ![submit](https://i.imgur.com/2FlZZTM.png)
+   
+   ![submit](https://i.imgur.com/2FlZZTM.png)
+
 4. **Check your ranking:**
    - Visit `/ranking` to see where you stand among other users.
-     ![ranking](https://i.imgur.com/ca3fp2j.png)
+   
+   ![ranking](https://i.imgur.com/ca3fp2j.png)
 
-`
