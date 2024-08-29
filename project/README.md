@@ -20,16 +20,16 @@ I developed a website with automated tests where users can see their Python know
   - [Exercise Endpoints](#exercise-endpoints)
   - [Ranking Endpoints](#ranking-endpoints)
   - [User Endpoints](#user-endpoints)
-- [Installation](#installation)
 - [Usage](#usage)
 
-## The website features:
+## Features:
 
 - **Login persistence** using JWT tokens, ensuring users remain logged in even when they leave the page.
 - **Authentication features** to verify the identity of the user and control access based on their credentials.
 - **Multiple pages** that provide a seamless user experience.
 - **Exercises** to prove a test the user knowledge in python logic.
 - **Ranking system** that is based on the scores users achieve across the exercises.
+- **Python Code Validation** when the front end send a python code, we can run the function and see if works.
 
 > To score on an exercise, users must pass all tests within it. However,
 > they only have three chances to submit each exercise. Once a score is
