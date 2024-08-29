@@ -1,6 +1,8 @@
 # Leetduck
 
-### Video Demo <URL>
+### Video Demo
+
+[Youtube - CS50x | Final Project | Leetduck | Andre Caracioly ](https://www.youtube.com/watch?v=BiclXp7kWn0)
 
 ## Description:
 
